@@ -1,0 +1,11 @@
+
+]Web:DoctypePresenceCheck":Insert a <!DOCTYPE> declaration to before this <html> tag.(ñ§½W
+NWeb:AvoidCommentedOutCodeCheck "Remove this commented out code.(ã‡ò·ùÿÿÿÿ
+IWeb:AvoidCommentedOutCodeCheck&"Remove this commented out code.(Ó€ú§
+MWeb:TableWithoutCaptionCheck1" Add a description to this table.(şÏãùÿÿÿÿ
+n Web:TableHeaderHasIdOrScopeCheck4";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÚõÊÙ8µƒ“¬Å2
+n Web:TableHeaderHasIdOrScopeCheck7";Add either an 'id' or a 'scope' attribute to this <th> tag.(É“š¼8µƒ“¬Å2
+n Web:TableHeaderHasIdOrScopeCheck8";Add either an 'id' or a 'scope' attribute to this <th> tag.(É“š¼8¶ƒ“¬Å2
+n Web:TableHeaderHasIdOrScopeCheckB";Add either an 'id' or a 'scope' attribute to this <th> tag.(¶õÛ—8¶ƒ“¬Å2
+s Web:TableHeaderHasIdOrScopeCheckC";Add either an 'id' or a 'scope' attribute to this <th> tag.(Í¥Á¼øÿÿÿÿ8¶ƒ“¬Å2
+n Web:TableHeaderHasIdOrScopeCheckD";Add either an 'id' or a 'scope' attribute to this <th> tag.(É“š¼8¶ƒ“¬Å2
