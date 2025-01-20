@@ -23,14 +23,15 @@
 <div class="panel-body" >
   <div class="nav nav-divider">
     <label style="margin-right: 20px" for="orderNumber">Order number
-      <input id="orderNumber" type="search" placeholder="Please enter order number" #orderNumber required/>
+      <input id="orderNumber" type="search" placeholder="Please enter order number" required/>
       <label id="lblOrderNumber" class="text-danger" for="order_number"></label>
     </label>
 
     <label style="margin-right: 20px" for="storeNumber">Store number
-      <input id="storeNumber" type="search" placeholder="Please enter store number" #storeNumber required/>
-<!--      <label class="text-danger" for="store_number">Store number required.</label>-->
+      <input id="storeNumber" type="search" placeholder="Please enter store number" required/>
+      <label id="lblStoreNumber" class="text-danger" for="store_number"></label>
     </label>
+
     <label style="margin-right: 20px">
       <input style="margin-left: 10px" class="has-success" type="radio" value="iss" name="type" #iss/> In Store Sale
       <input style="margin-left: 10px" type="radio" value="cnc" name="type" #cnc> Click & Collect
@@ -39,14 +40,14 @@
     </label>
     <button id="btnSearch" class="nav-link" class="btn btn-primary active">Search</button>
   </div>
-  <div></div>
+  <div class="panel-body"></div>
   <div id="cncView" class="panel panel-default">
     <div class="panel" style="text-align: center; background-color:  #aec6cf">
       <h4>Click & Collect Order Details</h4><br>
     </div>
 
-    <div class="panel-body" *ngIf="hasData()">
-      <table  class="table table-hover table-sm"  *ngFor="let order of orders">
+    <div class="panel">
+      <table  class="table table-hover table-sm" >
         <thead class="thead-light">
         <tr >
           <th><div id="orderNo">Order Number : </div>
@@ -77,56 +78,11 @@
         </tbody><br>
       </table>
     </div>
-    <h3 class="text-info" *ngIf="!hasData()">No Click & Collect Orders Found.</h3>
   </div>
-
 </div>
+<h3 id="orderErr" class="text-info">Order not Found.</h3>
 
-
-<script>
-     window.onload = function() {
-          document.getElementById('cncView').style.display = 'none';
-        };
-  async function fetchData() {
-  if(document.getElementById("orderNumber").value === "") {
-    document.getElementById("lblOrderNumber").textContent = "Order number required."
-    document.getElementById("lblOrderNumber").style.display = "block";
-  } else {
-    document.getElementById("lblOrderNumber").style.display = "none";
-  }
-              try {
-                  const response = await fetch('orders/cnc?orderNumber=' + document.getElementById('orderNumber').value + '&storeNumber=' + document.getElementById('storeNumber').value);
-                  if(Array.isArray(response.data) && response.data.length === 0) {
-                    document.getElementById("cncView").style.display = "none";
-                    document.getElementById("cncView").innerText = "No CNC orders present";
-
-                  } else {
-                     document.getElementById("cncView").style.display = "block";
-                      const data = await response.json(); // Parse the JSON response
-                      displayData(data); // Call the function to display data
-
-                  }
-              } catch (error) {
-                  console.error('Error fetching data:', error);
-              }
-          }
-
-
-           // Function to render data to the HTML
-          function displayData(data) {
-
-                document.getElementById('orderNo').innerText = 'Order Number : ' + data[0].orderNumber;
-                document.getElementById('storeNo').innerText = 'Store Number : ' + data[0].storeId;
-                document.getElementById('cStatus').innerText = 'Current Status : ' + data[0].currentStatus;
-
-                let history = data[0].tukCncHistoryDtoList;
-                let html = ``;
-                history.forEach(item => {
-                  html = html + `<tr><td>` + item.status + `</td><td>` + item.actionDateTime + `</td></tr>`;
-                });
-                document.getElementById('history').innerHTML = html;
-          }
-     document.getElementById('btnSearch').addEventListener('click', fetchData);
-      </script>
+    <script src="js/validations.js">
+    </script>
   </body>
 </html>
