@@ -17,41 +17,57 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="panel panel-default">
+  <div class="container-fluid" >
+    <div class="panel" style="background-color: #23527c">
       <div class="panel-heading" style="background-color: #23527c">
         <h1 class="text-center text-white" style="color: white;">NetCracker Orders Status Tracker</h1><br>
       </div>
     </div>
   </div>
 
-  <div class="panel-body">
-    <div class="nav nav-divider">
+ <div class="panel-body">
+    <div class="nav nav-divider" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+
       <!-- Order Number Input -->
-      <label for="orderNumber" style="margin-right: 20px">
-        Order Number
-        <input id="orderNumber" type="search"  placeholder="Please enter order number" required />
-        <label id="lblOrderNumber" class="text-danger"></label>
-      </label>
+      <div style="display: flex; flex-direction: column; align-items: flex-start; position: relative;">
+        <label for="orderNumber" style="margin-right: 20px; display: inline-block;">
+          Order Number
+        </label>
+        <input id="orderNumber" type="search" class="form-control rounded" placeholder="Please enter order number" required style="display: inline-block; width: auto;" onblur="validateOrderNumber()" />
+        <label id="lblOrderNumber" class="text-danger" style="display: none; position: absolute; bottom: -20px; left: 0;"></label>
+      </div>
 
       <!-- Store Number Input -->
-      <label for="storeNumber" style="margin-right: 20px">
-        Store Number
-        <input id="storeNumber" type="search" placeholder="Please enter store number" required />
-        <label id="lblStoreNumber" class="text-danger"></label>
-      </label>
+      <div style="display: flex; flex-direction: column; align-items: flex-start; position: relative;">
+        <label for="storeNumber" style="margin-right: 20px; display: inline-block;">
+          Store Number
+        </label>
+        <input id="storeNumber" type="search" class="form-control rounded" placeholder="Please enter store number" required style="display: inline-block; width: auto;" onblur="validateStoreNumber()" />
+        <label id="lblStoreNumber" class="text-danger" style="display: none; position: absolute; bottom: -20px; left: 0;"></label>
+      </div>
 
       <!-- Order Type Radio Buttons -->
-      <label style="margin-right: 20px">
-        <input style="margin-left: 10px" class="form-check-input" type="radio" value="iss" name="type" id="iss" /> In Store Sale
-        <input style="margin-left: 10px" type="radio" value="cnc" name="type" id="cnc" /> Click & Collect
-        <input style="margin-left: 10px" type="radio" value="cnct" name="type" id="cnct" /> Click & Collect Today
-      </label>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <label>
+          <input style="margin-left: 10px" class="form-check-input" type="radio" value="iss" name="type" id="iss" /> In Store Sale
+        </label>
+        <label>
+          <input style="margin-left: 10px" type="radio" value="cnc" name="type" id="cnc" /> Click & Collect
+        </label>
+        <label>
+          <input style="margin-left: 10px" type="radio" value="cnct" name="type" id="cnct" /> Click & Collect Today
+        </label>
+      </div>
 
       <!-- Search Button -->
-      <button id="btnSearch" class="nav-link btn btn-primary active">Search</button>
+      <div>
+        <button id="btnSearch" class="nav-link btn btn-primary active" style="display: inline-block;">Search</button>
+      </div>
+
     </div>
-  </div>
+ </div>
+
+
 
   <!-- CNC Order View -->
   <div id="cncView" class="panel panel-default" style="display: none;">

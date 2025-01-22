@@ -42,28 +42,29 @@ async function fetchData() {
 }
 
 function validateOrderNumber() {
-    document.getElementById("orderErr").style.display = "none";
     if (document.getElementById("orderNumber").value === "") {
         document.getElementById("lblOrderNumber").textContent = "Order number required.";
-        document.getElementById("lblOrderNumber").style.display = "block";
+        document.getElementById("lblOrderNumber").style.display = "block"; // Show error below input
         return false;
     } else {
-        document.getElementById("lblOrderNumber").style.display = "none";
+        document.getElementById("lblOrderNumber").style.display = "none"; // Hide error if valid
         return true;
     }
 }
 
 function validateStoreNumber() {
-    document.getElementById("orderErr").style.display = "none";
     if (document.getElementById("storeNumber").value === "") {
         document.getElementById("lblStoreNumber").textContent = "Store number required.";
-        document.getElementById("lblStoreNumber").style.display = "block";
+        document.getElementById("lblStoreNumber").style.display = "block"; // Show error below input
         return false;
     } else {
-        document.getElementById("lblStoreNumber").style.display = "none";
+        document.getElementById("lblStoreNumber").style.display = "none"; // Hide error if valid
         return true;
     }
 }
+
+
+
 
 // Function to render data based on order type
 function displayData(data, orderType) {
