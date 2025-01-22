@@ -137,8 +137,18 @@ public class NetCrackerOrdersService {
                 return TukCnctOrderStatus.ORDER_COLLECTED;
             case "6":
                 return TukCnctOrderStatus.ORDER_CANCELLED_AWAITING_UNPICKING;
+            case "7":
+                return TukCnctOrderStatus.ORDER_CANCELLED_NOT_PICKED_CVOS;
+            case "8":
+                return TukCnctOrderStatus.ORDER_CANCELLED_NOT_PICKED_IBM;
+            case "9":
+                return TukCnctOrderStatus.ORDER_RETURNED_NOT_COLLECTED;
+            case "10":
+                return TukCnctOrderStatus.LOCK_FAILED;
             case "11":
                 return TukCnctOrderStatus.PICK_FAILED_USER_ACTIONED;
+            case "12":
+                return TukCnctOrderStatus.COLLECTION_EXTENDED;
             case "13":
                 return TukCnctOrderStatus.ORDER_COLLECTED_CUSTOMER_NOT_PRESENT;
             default:
