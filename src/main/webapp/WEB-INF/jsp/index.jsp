@@ -1,11 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>NetCrackerApplication</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS and JS Dependencies -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -13,79 +15,158 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-  <div  class="container-fluid">
+  <div class="container-fluid">
     <div class="panel panel-default">
-      <div class="panel-heading" style="background-color:  #23527c ">
-        <h1 style="text-align: center; color: white">NetCracker Orders Tracker</h1><br>
+      <div class="panel-heading" style="background-color: #23527c">
+        <h1 class="text-center text-white" style="color: white;">NetCracker Orders Status Tracker</h1><br>
       </div>
     </div>
   </div>
 
-<div class="panel-body" >
-  <div class="nav nav-divider">
-    <label style="margin-right: 20px" for="orderNumber">Order number
-      <input id="orderNumber" type="search" placeholder="Please enter order number" required/>
-      <label id="lblOrderNumber" class="text-danger" for="order_number"></label>
-    </label>
+  <div class="panel-body">
+    <div class="nav nav-divider">
+      <!-- Order Number Input -->
+      <label for="orderNumber" style="margin-right: 20px">
+        Order Number
+        <input id="orderNumber" type="search"  placeholder="Please enter order number" required />
+        <label id="lblOrderNumber" class="text-danger"></label>
+      </label>
 
-    <label style="margin-right: 20px" for="storeNumber">Store number
-      <input id="storeNumber" type="search" placeholder="Please enter store number" required/>
-      <label id="lblStoreNumber" class="text-danger" for="store_number"></label>
-    </label>
+      <!-- Store Number Input -->
+      <label for="storeNumber" style="margin-right: 20px">
+        Store Number
+        <input id="storeNumber" type="search" placeholder="Please enter store number" required />
+        <label id="lblStoreNumber" class="text-danger"></label>
+      </label>
 
-    <label style="margin-right: 20px">
-      <input style="margin-left: 10px" class="has-success" type="radio" value="iss" name="type" #iss/> In Store Sale
-      <input style="margin-left: 10px" type="radio" value="cnc" name="type" #cnc> Click & Collect
-      <input style="margin-left: 10px" type="radio" value="cnct" name="type" #cnct> Click & Collect Today
-<!--      <label style="margin-right: 10px" class="text-danger" *ngIf="orderTypeError">Please select order type</label>-->
-    </label>
-    <button id="btnSearch" class="nav-link" class="btn btn-primary active">Search</button>
+      <!-- Order Type Radio Buttons -->
+      <label style="margin-right: 20px">
+        <input style="margin-left: 10px" class="form-check-input" type="radio" value="iss" name="type" id="iss" /> In Store Sale
+        <input style="margin-left: 10px" type="radio" value="cnc" name="type" id="cnc" /> Click & Collect
+        <input style="margin-left: 10px" type="radio" value="cnct" name="type" id="cnct" /> Click & Collect Today
+      </label>
+
+      <!-- Search Button -->
+      <button id="btnSearch" class="nav-link btn btn-primary active">Search</button>
+    </div>
   </div>
-  <div class="panel-body"></div>
-  <div id="cncView" class="panel panel-default">
-    <div class="panel" style="text-align: center; background-color:  #aec6cf">
+
+  <!-- CNC Order View -->
+  <div id="cncView" class="panel panel-default" style="display: none;">
+    <div class="panel" style="text-align: center; background-color: #aec6cf">
       <h4>Click & Collect Order Details</h4><br>
     </div>
-
     <div class="panel">
-      <table  class="table table-hover table-sm" >
+      <table class="table table-hover table-sm">
         <thead class="thead-light">
-        <tr >
-          <th><div id="orderNo">Order Number : </div>
-            <div id="storeNo">Store Number : </div>
-            <div id="cStatus">Current Status : </div></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr><td colspan="3">
-          <div class="panel" style="text-align: center; background-color:  #e7feff">
-            <h4><b>Order status history</b></h4><br>
-          </div></td>
-        </tr>
+          <tr>
+            <th>
+              <div id="orderNo">Order Number: </div>
+              <div id="storeNo">Store Number: </div>
+              <div id="cStatus">Current Status: </div>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="panel" style="text-align: center; background-color: #e7feff">
+                <h4><b>Order Status History</b></h4><br>
+              </div>
+            </td>
+          </tr>
         </thead>
         <thead class="thead-light">
-        <tr>
-          <th>Status</th>
-          <th>Action Date Time</th>
-          <th></th>
-        </tr>
+          <tr>
+            <th>Status</th>
+            <th>Action Date Time</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody id="history">
-        <tr>
-          <td><div id="hStatus"></div></td>
-          <td><div id="hDate"></div></td>
-          <td></td>
-         </tr>
-        </tbody><br>
+          <tr>
+            <td><div id="hStatus"></div></td>
+            <td><div id="hDate"></div></td>
+            <td></td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
-</div>
-<h3 id="orderErr" class="text-info">Order not Found.</h3>
 
-    <script src="js/validations.js">
-    </script>
-    <script src="/js/jquery-3.7.1.min.js"></script>
-  </body>
+  <!-- ISS Order View -->
+  <div id="issView" class="panel panel-default" style="display: none;">
+    <div class="panel" style="text-align: center; background-color: #aec6cf">
+      <h4>In Store Sale Order Details</h4><br>
+    </div>
+    <div class="panel">
+      <table class="table table-hover table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>
+              <div id="issOrderNo">Order Number: </div>
+              <div id="issStoreNo">Store Number: </div>
+              <div id="issStatus">Current Status: </div>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+
+        </thead>
+        </table>
+    </div>
+  </div>
+
+  <!-- CNCT Order View -->
+  <div id="cnctView" class="panel panel-default" style="display: none;">
+    <div class="panel" style="text-align: center; background-color: #aec6cf">
+      <h4>Click & Collect Today Order Details</h4><br>
+    </div>
+    <div class="panel">
+      <table class="table table-hover table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>
+              <div id="cnctOrderNo">Order Number: </div>
+              <div id="cnctStoreNo">Store Number: </div>
+              <div id="cnctStatus">Current Status: </div>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="panel" style="text-align: center; background-color: #e7feff">
+                <h4><b>Order Status History</b></h4><br>
+              </div>
+            </td>
+          </tr>
+        </thead>
+        <thead class="thead-light">
+          <tr>
+            <th>Status</th>
+            <th>Action Date Time</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cnctHistory">
+          <tr>
+            <td><div id="hStatus"></div></td>
+            <td><div id="hDate"></div></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Order Not Found Error Message -->
+  <h3 id="orderErr" class="text-info" style="display: none;">Order Not Found.</h3>
+
+  <!-- JS Scripts -->
+  <script src="js/validations.js"></script>
+  <script src="/js/jquery-3.7.1.min.js"></script>
+</body>
 </html>
